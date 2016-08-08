@@ -19,38 +19,41 @@ Outline
 Tracing code
 ------------
 
-I'm logging out the values of the parameters and an intermediate value
-and the value that got returned::
+I put logs at the top, middle and end of this function to what is going
+on::
 
 .. code-block:: python
-   :emphasize-lines 8-11,18,22
 
-    >>> def calculate_per_capita_gross_domestic_product(
-    ...     consumption,
-    ...     investment,
-    ...     government_spending,
-    ...     net_exports,
+    >>> import logging
+    >>> log = logging.getLogger("dsf")
+    >>> def nominal_per_capita_gross_domestic_product(
+    ...     nominal_consumption,
+    ...     nominal_investment,
+    ...     nominal_government_spending,
+    ...     nominal_net_exports,
     ...     population_count):
     ...
-    ...     log.debug("C: {}".format(consumption))
-    ...     log.debug("I: {}".format(investment))
-    ...     log.debug("G: {}".format(government_spending))
-    ...     log.debug("X: {}".format(net_exports))
+    ...     log.debug("C: {}".format(nominal_consumption))
+    ...     log.debug("I: {}".format(nominal_investment))
+    ...     log.debug("G: {}".format(nominal_government_spending))
+    ...     log.debug("X: {}".format(nominal_net_exports))
     ...
-    ...     Y = sum(consumption,
-    ...         investment,
-    ...         government_spending,
-    ...         net_exports)
+    ...     nominal_Y = sum([nominal_consumption,
+    ...         nominal_investment,
+    ...         nominal_government_spending,
+    ...         nominal_net_exports])
     ...
-    ...     log.debug("GDP: {0}".format(Y))
+    ...     log.debug("Nominal GDP: {0}".format(nominal_Y))
     ...
-    ...     per_capita_gdp = Y / population_count
+    ...     nominal_per_capita_gdp = nominal_Y / population_count
     ...
-    ...     log.debug("per-capita GDP: {0:0.2f}".format(per_capita_gdp))
+    ...     log.debug("per-capita GDP: {0:0.2f}".format(
+    ...         nominal_per_capita_gdp))
     ...
-    ...     return per_capita_gdp
-
-
+    ...     return nominal_per_capita_gdp
+    ...
+    >>> nominal_per_capita_gross_domestic_product(100, 110, 120, 130, 50)
+    9.2
 
 
 Walk through a decorator named trace that prints passed-in arguments and
