@@ -268,19 +268,37 @@ And it works like we want::
     DEBUG:dsf:Matt
     hello again, Matt!
 
+On the downside, these kinds of decorators tend to obliterate the
+signature.  I'm sure there's a way to use the decorator module to stop
+this, but I ccan't find it.
 
-Last notes
-----------
+
+These are really just function closures
+---------------------------------------
 
 The name "decorator" is just a python label. These are really function
 closures and have been around in interpreted languages since before the
 Unix epoch.
 
+Function currying
+-----------------
+
 Function currying (aka partial function application) can be done with
-decorators.
+decorators.  Currying looks sort of like this::
 
+    >>> def add_x_and_y(x, y):
+    ...     return x + y
 
+    >>> def add_x_and_99(x):
+    ...     return add_x_and_y(x, 99)
 
+    >>> import functools
+    >>> add_x_and_33 = functools.partial(add_x_and_y, y=33)
+    >>> add_x_and_33(1)
+    34
+
+Essentially, you copy the function and freeze a parameter.  Mostly this
+is useful in callback scenarios.
 
 Matt’s opinions and advice
 ==========================
