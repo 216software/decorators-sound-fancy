@@ -23,8 +23,6 @@ I'm logging out the values of the parameters and an intermediate value
 and the value that got returned::
 
 .. code-block:: python
-
-.. code-block:: python
    :emphasize-lines 8-11,18,22
 
     >>> def calculate_per_capita_gross_domestic_product(
