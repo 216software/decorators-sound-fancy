@@ -107,7 +107,6 @@ Apply trace to the hello_there function::
     >>> hello_there_with_debugging = dsf.trace(dsf.hello_there)
     >>> logging.basicConfig(level=logging.DEBUG)
     >>> hello_there_with_debugging
-    >>> hello_there_with_debugging
     <function trace_function.<locals>.traced_function at 0x7ff943d696a8>
 
 Now run the run the function::
@@ -147,7 +146,6 @@ instances::
 
 Reading or writing the display_name attribute on Person runs code, and
 you can do whatever you want.
-
 
 Beware!  Decorating functions can hide important stuff!
 -------------------------------------------------------
@@ -270,7 +268,7 @@ And it works like we want::
 
 On the downside, these kinds of decorators tend to obliterate the
 signature.  I'm sure there's a way to use the decorator module to stop
-this, but I ccan't find it.
+this, but I can't find it.
 
 
 These are really just function closures
